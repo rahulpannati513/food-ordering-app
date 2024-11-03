@@ -48,7 +48,7 @@ const AboutUs = () => {
               className="w-6 h-6 mr-2"
             />
             <a
-              href="https://github.com/[YourGitHubUsername]"
+              href="https://github.com/rahulpannati513"
               className="text-blue-600 hover:underline"
             >
               GitHub
@@ -61,7 +61,7 @@ const AboutUs = () => {
               className="w-6 h-6 mr-2"
             />
             <a
-              href="https://linkedin.com/in/[YourLinkedInUsername]"
+              href="https://www.linkedin.com/in/rahul-pannati-599335197/"
               className="text-blue-600 hover:underline"
             >
               LinkedIn
@@ -74,7 +74,7 @@ const AboutUs = () => {
               className="w-6 h-6 mr-2"
             />
             <a
-              href="[Link to your Resume]"
+              href="flowcv.me/rahul-pannati"
               className="text-blue-600 hover:underline"
             >
               Resume
