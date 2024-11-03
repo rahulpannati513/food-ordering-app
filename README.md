@@ -62,35 +62,6 @@ npm run lint
 ## Project Structure
 
 ```
-.
-├── .gitignore
-├── 
-
-eslint.config.js
-
-
-├── 
-
-index.html
-
-
-├── 
-
-package.json
-
-
-├── 
-
-postcss.config.js
-
-
-├── public
-│   └── ...
-├── 
-
-README.md
-
-
 ├── src
 │   ├── App.css
 │   ├── App.jsx
@@ -121,14 +92,6 @@ README.md
 │   │   ├── useRestuarantInfo.jsx
 │   │   ├── useRestuarantMenu.jsx
 ├── 
-
-tailwind.config.js
-
-
-├── 
-
-vite.config.js
-
 
 ```
 
