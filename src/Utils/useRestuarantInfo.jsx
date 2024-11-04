@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useRestuarantInfo = () => {
   const [listofRestuarants, setListOfRestuarants] = useState([]);
@@ -10,7 +10,7 @@ const useRestuarantInfo = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.3684658&lng=78.53159409999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "/dapi/restaurants/list/v5?lat=17.3684658&lng=78.53159409999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     setListOfRestuarants(
@@ -21,5 +21,7 @@ const useRestuarantInfo = () => {
     );
   };
 
-  return;
+  return { listofRestuarants, filteredRestuarant, setFilteredRestuarant };
 };
+
+export default useRestuarantInfo;

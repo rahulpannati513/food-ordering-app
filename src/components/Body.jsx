@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RestuarantCard from "/src/components/RestuarantCard";
 import Shimmer from "./Shimmer";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import useRestuarantInfo from "../Utils/useRestuarantInfo";
 
 const Body = () => {
-  const [listofRestuarants, setListOfRestuarants] = useState([]);
-  const [filteredRestuarant, setFilteredRestuarant] = useState([]);
+  const { listofRestuarants, filteredRestuarant, setFilteredRestuarant } =
+    useRestuarantInfo();
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.3684658&lng=78.53159409999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setListOfRestuarants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-    );
-    setFilteredRestuarant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-    );
-  };
 
   if (onlineStatus === false)
     return (
@@ -39,10 +23,9 @@ const Body = () => {
 
   return (
     <div>
-      {" "}
       <div className="body p-4">
         <div className="flex items-center mb-4">
-          <div className="search flex items-center">
+          <div className="search flex items-center space-x-2">
             <input
               id="search"
               type="text"
@@ -50,10 +33,22 @@ const Body = () => {
               onChange={(e) => {
                 setSearchText(e.target.value);
               }}
-              className="bg-gray-100 border border-gray-300 rounded-l-md p-2 w-48 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  const filteredRestaurants =
+                    listofRestuarants?.restaurants?.filter((res) =>
+                      res?.info?.name
+                        ?.toLowerCase()
+                        .includes(searchText.toLowerCase())
+                    );
+                  setFilteredRestuarant({ restaurants: filteredRestaurants });
+                }
+              }}
+              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-64 focus:outline-none focus:ring-2 focus:ring-orange-400"
               placeholder="Search..."
             />
             <button
+              className="bg-orange-500 text-white rounded-md py-2 px-4 hover:bg-orange-600 transition-colors"
               onClick={() => {
                 const filteredRestaurants =
                   listofRestuarants?.restaurants?.filter((res) =>
@@ -68,7 +63,7 @@ const Body = () => {
             </button>
           </div>
           <button
-            className="bg-blue-500 text-white rounded-md py-2 px-4 ml-4 hover:bg-blue-600 transition-colors"
+            className="bg-orange-500 text-white rounded-md py-2 px-4 ml-4 hover:bg-orange-600 transition-colors"
             onClick={() => {
               const filteredList = listofRestuarants?.restaurants?.filter(
                 (res) => res?.info?.avgRating > 4

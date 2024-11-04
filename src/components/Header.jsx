@@ -11,9 +11,6 @@ const Header = () => {
   const [login, setLogin] = useState("Login");
   const onlined = useOnlineStatus();
   const data = useContext(UserContext);
-  const data2 = useContext(userContext2);
-  console.log(data2);
-
   const cartItems = useSelector((store) => store.cart.items.length);
   return (
     <div className="flex justify-between items-center p-4 bg-white shadow-md">
