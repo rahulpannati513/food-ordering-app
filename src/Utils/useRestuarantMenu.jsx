@@ -10,7 +10,8 @@ const useRestuarantMenu = (resId) => {
 
   const fetchData = async () => {
     const data = await fetch(
-      `/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.37240&lng=78.43780&restaurantId=${resId}`
+      "https://backend-genai-1.azurewebsites.net/api/swiggy/swiggy-proxy/restaurantsMenu?resId=" +
+        resId
     );
     const json = await data.json();
     setRestInfo(json.data);

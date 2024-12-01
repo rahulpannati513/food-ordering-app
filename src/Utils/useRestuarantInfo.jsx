@@ -10,7 +10,7 @@ const useRestuarantInfo = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "/dapi/restaurants/list/v5?lat=17.3684658&lng=78.53159409999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://backend-genai-1.azurewebsites.net/api/swiggy/swiggy-proxy/restaurants"
     );
     const json = await data.json();
     setListOfRestuarants(
