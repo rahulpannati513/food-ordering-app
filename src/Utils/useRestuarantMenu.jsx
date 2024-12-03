@@ -10,7 +10,7 @@ const useRestuarantMenu = (resId) => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://backend-genai-1.azurewebsites.net/api/swiggy/swiggy-proxy/restaurantsMenu?resId=" +
+      "https://generative-ai-app.azurewebsites.net/api/swiggy/swiggy-proxy/restaurantsMenu?resId=" +
         resId
     );
     const json = await data.json();
